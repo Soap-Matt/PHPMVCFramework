@@ -31,10 +31,14 @@ class Router
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
 
-        // TODO: get the callback using the above data. Call back should be set to false if there is no callback
-        // TODO: Check if the callback is false and do something if is -> return not found for now
-        // TODO: execute the callback
+        $callback = $this->routes[$method][$path] ?? false;
 
+        if ($callback) {
+            return call_user_func($callback);
+        }
+
+
+        echo "Not Found";
 
 
     }

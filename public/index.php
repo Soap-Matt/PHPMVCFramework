@@ -1,21 +1,20 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 use app\core\Application;
-use app\core\Router;
 
 // php -S localhost:8080
 
 $app = new Application();
 
-$router = new Router();
-
 $app->router->get('/', function (){
-   return 'Hello World';
+    return
+        'Hello World';
 });
 $app->router->get('/contact', function (){
-    return 'Contact';
+    return
+        'Contact';
 });
 
 

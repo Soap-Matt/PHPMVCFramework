@@ -5,13 +5,15 @@ namespace app\core;
 class Request
 {
 
+    /**
+     * @return false|string
+     */
     public function getPath() {
-        // take everything before questionmark from request uri
+        return strtok($_SERVER['REQUEST_URI'], '?');
     }
 
     public function getMethod() {
-        // get the current request method
-        // return in lower case
+        return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
 }
