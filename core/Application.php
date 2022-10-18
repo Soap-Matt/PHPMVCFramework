@@ -15,15 +15,18 @@ class Application
      */
     public $request;
 
-    public function __construct()
+    public static $ROOT_DIR;
+
+    public function __construct($rootPath)
     {
         $this->request = new Request();
         $this->router = new Router($this->request);
+        self::$ROOT_DIR = $rootPath;
     }
 
     public function run()
     {
-        $this->router->resolve();
+       echo $this->router->resolve();
     }
 
 

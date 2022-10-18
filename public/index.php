@@ -6,16 +6,11 @@ use app\core\Application;
 
 // php -S localhost:8080
 
-$app = new Application();
+$app = new Application(dirname(__DIR__));
 
-$app->router->get('/', function (){
-    return
-        'Hello World';
-});
-$app->router->get('/contact', function (){
-    return
-        'Contact';
-});
+$app->router->get('/', 'home');
+
+$app->router->get('/contact', 'contact');
 
 
 $app->run();
