@@ -30,6 +30,11 @@ class Router
     {
         $this->routes['get'][$path] = $callback;
     }
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
+    }
+
 
     public function resolve()
     {
@@ -49,7 +54,7 @@ class Router
         }
 
         $this->response->set_status_code(404);
-        return "Not Found";
+        return $this->renderView('_404');
 
     }
 
@@ -57,6 +62,12 @@ class Router
     {
         $layoutContent = $this->getLayoutContent();
         $viewContent = $this->getViewContent($view);
+        return str_replace("{{ content }}", $viewContent, $layoutContent);
+    }
+
+    private function renderContent(string $viewContent)
+    {
+        $layoutContent = $this->getLayoutContent();
         return str_replace("{{ content }}", $viewContent, $layoutContent);
     }
 
@@ -73,4 +84,6 @@ class Router
         include_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
     }
+
+
 }
