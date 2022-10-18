@@ -14,9 +14,15 @@ class Router
      */
     public $request;
 
-    public function __construct(Request $request)
+    /**
+     * @var Response
+     */
+    public $response;
+
+    public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
+        $this->response = $response;
     }
 
 
@@ -42,6 +48,7 @@ class Router
 
         }
 
+        $this->response->set_status_code(404);
         return "Not Found";
 
     }
