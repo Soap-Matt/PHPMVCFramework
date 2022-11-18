@@ -49,8 +49,11 @@ class Router
         }
 
         if ($callback) {
+            if (is_array($callback)) {
+                $callbackClass = new $callback[0];
+                $callback[0] = $callbackClass;
+            }
             return call_user_func($callback);
-
         }
 
         $this->response->set_status_code(404);
@@ -58,10 +61,10 @@ class Router
 
     }
 
-    private function renderView(string $view)
+    public function renderView(string $view, $params = [])
     {
         $layoutContent = $this->getLayoutContent();
-        $viewContent = $this->getViewContent($view);
+        $viewContent = $this->getViewContent($view, $params);
         return str_replace("{{ content }}", $viewContent, $layoutContent);
     }
 
@@ -78,8 +81,17 @@ class Router
         return ob_get_clean();
     }
 
-    private function getViewContent(string $view)
+    private function getViewContent(string $view, $params = [])
     {
+        if (!empty($params)) {
+            foreach ($params as $key => $value) {
+                $$key = $value;
+            }
+        }
+
+        $name = 'Matthew De Jager';
+
+
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
