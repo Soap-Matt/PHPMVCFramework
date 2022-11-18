@@ -53,7 +53,7 @@ class Router
                 $callbackClass = new $callback[0];
                 $callback[0] = $callbackClass;
             }
-            return call_user_func($callback);
+            return $callback($this->request);
         }
 
         $this->response->set_status_code(404);

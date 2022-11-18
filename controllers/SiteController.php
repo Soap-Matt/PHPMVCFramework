@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Request;
 
 class SiteController extends Controller
 {
@@ -11,7 +12,13 @@ class SiteController extends Controller
         return $this->render('contact');
     }
 
-    public function handleContact() {
+    public function handleContact(Request $request) {
+
+        echo "<pre>";
+            echo var_dump($request->getBody());
+        echo "</pre>";
+
+
         return 'Handling contact form submission';
     }
 
