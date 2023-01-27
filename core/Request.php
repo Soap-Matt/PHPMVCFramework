@@ -12,21 +12,31 @@ class Request
         return strtok($_SERVER['REQUEST_URI'], '?');
     }
 
-    public function getMethod() {
+    public function method(): string
+    {
         return strtolower($_SERVER['REQUEST_METHOD']);
+    }
+
+    public function isGet(): bool
+    {
+        return $this->method() === 'get';
+    }
+
+    public function isPost(): bool
+    {
+        return $this->method() === 'post';
     }
 
     public function getBody() {
         $data = [];
-        if ($this->getMethod() === 'get') {
+        if ($this->method() === 'get') {
             foreach ($_GET as $key => $value) {
                 $data[$key] = preg_replace('/[^A-Za-z0-9\-]/', '', $value);
             }
         }
 
-        if ($this->getMethod() === 'post') {
+        if ($this->method() === 'post') {
             foreach ($_POST as $key => $value) {
-                echo filter_input(INPUT_GET, $value, FILTER_SANITIZE_SPECIAL_CHARS);
                 $data[$key] = preg_replace('/[^A-Za-z0-9\-]/', '', $value);
             }
         }

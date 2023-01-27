@@ -13,12 +13,6 @@ class SiteController extends Controller
     }
 
     public function handleContact(Request $request) {
-
-        echo "<pre>";
-            echo var_dump($request->getBody());
-        echo "</pre>";
-
-
         return 'Handling contact form submission';
     }
 
