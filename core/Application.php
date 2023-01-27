@@ -19,6 +19,8 @@ class Application
 
     public static $ROOT_DIR;
 
+    public Controller $controller;
+
     /**
      * @var Response
      */
@@ -36,6 +38,22 @@ class Application
     public function run()
     {
        echo $this->router->resolve();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    /**
+     * @param mixed $controller
+     */
+    public function setController($controller)
+    {
+        $this->controller = $controller;
     }
 
 

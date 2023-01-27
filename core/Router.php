@@ -50,8 +50,8 @@ class Router
 
         if ($callback) {
             if (is_array($callback)) {
-                $callbackClass = new $callback[0];
-                $callback[0] = $callbackClass;
+                Application::$app->setController(new $callback[0]);
+                $callback[0] = Application::$app->getController();
             }
             return $callback($this->request);
         }
@@ -76,8 +76,9 @@ class Router
 
     private function getLayoutContent()
     {
+        $layout = Application::$app->getController()->layout;
         ob_start();
-        include_once Application::$ROOT_DIR.'/views/layouts/main.php';
+        include_once Application::$ROOT_DIR.'/views/layouts/' . $layout .'.php';
         return ob_get_clean();
     }
 
