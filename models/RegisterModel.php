@@ -17,4 +17,16 @@ class RegisterModel extends Model
         return true;
     }
 
+    protected function rules(): array
+    {
+        return [
+            "firstName" => [self::RULE_REQUIRED],
+            "lastName" => [self::RULE_REQUIRED],
+            "email" => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            "password" => [self::RULE_REQUIRED, [self::RULE_MIN, "min" => 5], [self::RULE_MAX, "max" => 11]],
+            "passwordConfirmation" => [self::RULE_REQUIRED, [self::RULE_MATCH, "match" => "password"]]
+        ];
+    }
+
+
 }
