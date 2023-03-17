@@ -10,7 +10,7 @@ abstract class Model
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
 
-    public array $errors;
+    public array $errors = [];
 
 
     public function loadData($data)
@@ -26,13 +26,6 @@ abstract class Model
 
     public function validate()
     {
-//        [
-//            "firstName" => [self::RULE_REQUIRED],
-//            "lastName" => [self::RULE_REQUIRED],
-//            "email" => [self::RULE_REQUIRED, self::RULE_EMAIL],
-//            "password" => [self::RULE_REQUIRED, [self::RULE_MIN, 5], [self::RULE_MAX, 11]],
-//            "passwordConfirmation" => [self::RULE_REQUIRED, [self::RULE_MATCH, "match" => "password"]]
-//        ];
         foreach ($this->rules() as $attribute => $rules) {
             foreach ($rules as $rule) {
                 $value = $this->{$attribute};
@@ -94,6 +87,17 @@ abstract class Model
             self::RULE_MIN => "Field must be longer than {min} characters",
             self::RULE_MATCH => "Field does not match {match}"
         ];
+    }
+
+    public function hasError($attribute): bool {
+        if ($this->errors[$attribute]) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getFirstError(string $attribute):?string {
+        return $this->errors[$attribute][0];
     }
 
 }

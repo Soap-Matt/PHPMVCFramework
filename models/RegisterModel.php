@@ -4,13 +4,15 @@ namespace app\models;
 
 use app\core\Model;
 
+// todo: create constants for field names
+
 class RegisterModel extends Model
 {
-    public string $firstName;
-    public string $lastName;
-    public string $email;
-    public string $password;
-    public string $passwordConfirmation;
+    public string $firstName = '';
+    public string $lastName = '';
+    public string $email = '';
+    public string $password = '';
+    public string $passwordConfirmation = '';
 
     public function register(): bool
     {

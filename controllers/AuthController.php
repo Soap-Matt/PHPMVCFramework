@@ -20,6 +20,7 @@ class AuthController extends Controller
 
     public function register(Request $request) {
         $registerModel = new RegisterModel();
+        $this->setLayout('auth');
         if ($request->isPost()) {
 
             $registerModel->loadData($request->getBody());
@@ -27,12 +28,12 @@ class AuthController extends Controller
             if ($registerModel->validate() && $registerModel->register()) {
                 return "success!";
             }
-            echo print_r($registerModel->errors);
 
-        } else {
-            $this->setLayout('auth');
-            return $this->render('register', ["register" => $registerModel]);
+            return $this->render('register', ["registerModel" => $registerModel]);
+
         }
+
+        return $this->render('register', ["registerModel" => $registerModel]);
     }
 
 
