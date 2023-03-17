@@ -23,13 +23,5 @@ $app->router->post('/login', [AuthController::class, 'login']);
 
 $app->run();
 
-// TODO 2:00:00 https://www.youtube.com/watch?v=6ERdu4k62wI&t=3626s&ab_channel=freeCodeCamp.org
-
-// TODO: The form->field function should create the form groups
-// TODO: Add a to string magic method to the field class
-// TODO: Create a has error method on the Model
-// TODO: Model needs get first error class
-// TODO: Add a type property to the Field class
-// TODO: Create constants for the form types inside the Field class
-// TODO: Set the fields type to text as default in the constructor
+// TODO 2:20:00 https://www.youtube.com/watch?v=6ERdu4k62wI&t=3626s&ab_channel=freeCodeCamp.org
 
